@@ -1,0 +1,15 @@
+- name: Setup Redis Server
+  hosts:
+    - server_role_redis_server # this host group is generated from our dynamic inventory
+  remote_user: 'rocky'
+  become: true
+  roles: 
+    - rocky
+
+- name: Setup Fronend Server
+  hosts:
+    - server_role_frontend_server
+  remote_user: 'ubuntu'
+  become: true
+  roles: 
+    - ubuntu

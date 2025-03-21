@@ -6,13 +6,13 @@ compose:
   ansible_host: public_dns_name
 # Set the Inventory Hostname to be the EC2 Tag Name value without any prefix or separator
 hostnames:
-  - name: tag:Name
+  - name: tag:Name  # this uses the 'Name' tag of the ec2 as the hostname (see line 127, 139 of main.tf)
     separator: ""
     prefix: ""
 # Create groups
 keyed_groups:
   # Create a group for each Name Tag (alternative to setting the hostname above)
-  - key: tags.group
+  - key: tags.group # this is unused but would create a host group for each distinct 'group' tag gathered from ec2s
     prefix: "group"
     separator: "_"
   # Create group for each separate Project Tag
@@ -20,6 +20,6 @@ keyed_groups:
     prefix: "project"
     separator: "_"
   # Create a group for each separate Role Tag
-  - key: tags.Role
+  - key: tags.Role  # we reference the groups created by this key in our playbook
     prefix: "server_role"
     separator: "_"

@@ -1,0 +1,5 @@
+- name: Reload nginx
+  ansible.builtin.service:
+    name: nginx
+    state: reloaded
+  # listen: "restart web services" # listen for "restart web services" notification
